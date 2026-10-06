@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abdul Raheem Toor | Cybersecurity & Cloud Security Enthusiast</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind Custom Configuration -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        cyber: {
+                            bg: '#070b14',
+                            card: 'rgba(15, 23, 42, 0.75)',
+                            border: 'rgba(0, 242, 254, 0.15)',
+                            cyan: '#00f2fe',
+                            blue: '#4facfe',
+                            emerald: '#00f5d4',
+                            purple: '#7b2cbf',
+                            pink: '#f72585'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Outfit', 'Plus Jakarta Sans', 'sans-serif'],
+                        code: ['Fira Code', 'monospace']
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'glow': 'glow 3s infinite alternate',
+                        'float': 'float 6s ease-in-out infinite'
+                    },
+                    keyframes: {
+                        glow: {
+                            '0%': { boxShadow: '0 0 15px rgba(0, 242, 254, 0.2)' },
+                            '100%': { boxShadow: '0 0 30px rgba(0, 242, 254, 0.6)' }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #070b14;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(0, 242, 254, 0.3);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(0, 242, 254, 0.6);
+        }
+
+        /* Glassmorphism Classes */
+        .glass-panel {
+            background: rgba(13, 20, 36, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 242, 254, 0.15);
+        }
+
+        .glass-panel-hover {
+            transition: all 0.3s ease;
+        }
+        .glass-panel-hover:hover {
+            border-color: rgba(0, 242, 254, 0.4);
+            box-shadow: 0 8px 32px 0 rgba(0, 242, 254, 0.15);
+            transform: translateY(-4px);
+        }
+
+        /* Cyber Text Gradient */
+        .text-gradient-cyber {
+            background: linear-gradient(135deg, #00f2fe 0%, #4facfe 50%, #00f5d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .text-gradient-purple {
+            background: linear-gradient(135deg, #4facfe 0%, #7b2cbf 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Glow Effects */
+        .glow-cyan {
+            box-shadow: 0 0 20px rgba(0, 242, 254, 0.25);
+        }
+        .glow-emerald {
+            box-shadow: 0 0 20px rgba(0, 245, 212, 0.25);
+        }
+
+        /* Terminal styling */
+        .terminal-header {
+            background: rgba(10, 15, 29, 0.9);
+            border-bottom: 1px solid rgba(0, 242, 254, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-[#070b14] text-slate-200 font-sans antialiased selection:bg-cyan-500 selection:text-slate-900 overflow-x-hidden">
+
+    <!-- Interactive Background Canvas -->
+    <canvas id="bg-canvas" class="fixed top-0 left-0 w-full h-full pointer-events-none z-0 opacity-40"></canvas>
+
+    <!-- Navigation Header -->
+    <header class="fixed top-0 left-0 w-full z-50 glass-panel border-b border-slate-800/80 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#hero" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center font-code font-bold text-slate-900 text-xl shadow-lg shadow-cyan-500/20 group-hover:scale-105 transition-transform">
+                    ART
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-bold text-lg tracking-wider text-slate-100 group-hover:text-cyan-400 transition-colors">A. RAHEEM TOOR</span>
+                    <span class="font-code text-xs text-cyan-400/80 flex items-center gap-1">
+                        <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> SEC_OPS // ENTHUSIAST
+                    </span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center space-x-1 lg:space-x-2 font-code text-xs lg:text-sm">
+                <a href="#about" class="px-3 py-2 rounded-lg text-slate-300 hover:text-cyan-400 hover:bg-slate-800/50 transition-all"><span class="text-cyan-400">01.</span> About</a>
+                <a href="#education" class="px-3 py-2 rounded-lg text-slate-300 hover:text-cyan-400 hover:bg-slate-800/50 transition-all"><span class="text-cyan-400">02.</span> Education</a>
+                <a href="#skills" class="px-3 py-2 rounded-lg text-slate-300 hover:text-cyan-400 hover:bg-slate-800/50 transition-all"><span class="text-cyan-400">03.</span> Skills</a>
+                <a href="#projects" class="px-3 py-2 rounded-lg text-slate-300 hover:text-cyan-400 hover:bg-slate-800/50 transition-all"><span class="text-cyan-400">04.</span> Projects</a>
+                <a href="#interests" class="px-3 py-2 rounded-lg text-slate-300 hover:text-cyan-400 hover:bg-slate-800/50 transition-all"><span class="text-cyan-400">05.</span> Cyber Focus</a>
+                <a href="#contact" class="px-3 py-2 rounded-lg text-slate-300 hover:text-cyan-400 hover:bg-slate-800/50 transition-all"><span class="text-cyan-400">06.</span> Contact</a>
+            </nav>
+
+            <!-- CTA Button -->
+            <div class="hidden sm:flex items-center gap-3">
+                <a href="#contact" class="px-4 py-2 text-xs font-code rounded-lg bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-500/40 text-cyan-300 hover:bg-cyan-500 hover:text-slate-900 font-semibold transition-all shadow-md shadow-cyan-500/10 flex items-center gap-2">
+                    <i class="fa-solid me-1 fa-terminal"></i> Connect
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle Button -->
+            <button id="menu-btn" class="md:hidden text-slate-300 hover:text-cyan-400 focus:outline-none p-2" aria-label="Toggle Navigation Menu">
+                <i class="fa-solid fa-bars text-2xl" id="menu-icon"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden glass-panel border-b border-cyan-500/20 px-6 py-6 space-y-3 transition-all">
+            <a href="#about" class="mobile-link block py-2 text-slate-200 hover:text-cyan-400 font-code"><span class="text-cyan-400 me-2">01.</span> About Me</a>
+            <a href="#education" class="mobile-link block py-2 text-slate-200 hover:text-cyan-400 font-code"><span class="text-cyan-400 me-2">02.</span> Education</a>
+            <a href="#skills" class="mobile-link block py-2 text-slate-200 hover:text-cyan-400 font-code"><span class="text-cyan-400 me-2">03.</span> Skills</a>
+            <a href="#projects" class="mobile-link block py-2 text-slate-200 hover:text-cyan-400 font-code"><span class="text-cyan-400 me-2">04.</span> Projects</a>
+            <a href="#interests" class="mobile-link block py-2 text-slate-200 hover:text-cyan-400 font-code"><span class="text-cyan-400 me-2">05.</span> Security Focus</a>
+            <a href="#contact" class="mobile-link block py-2 text-slate-200 hover:text-cyan-400 font-code"><span class="text-cyan-400 me-2">06.</span> Contact</a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="hero" class="relative min-h-screen pt-28 pb-16 flex items-center justify-center overflow-hidden z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            <!-- Left Info Column -->
+            <div class="lg:col-span-7 space-y-6 text-left">
+                
+                <!-- Status Badge -->
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-panel border border-cyan-500/30 text-cyan-300 font-code text-xs sm:text-sm">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                    <span>COMSATS University Islamabad (Wah Campus) &bull; Semester 5</span>
+                </div>
+
+                <!-- Main Heading -->
+                <div class="space-y-2">
+                    <h2 class="font-code text-cyan-400 text-sm sm:text-base tracking-widest uppercase">Hi, my name is</h2>
+                    <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-none">
+                        Abdul Raheem <span class="text-gradient-cyber">Toor</span>
+                    </h1>
+                    <p class="text-xl sm:text-2xl font-semibold text-slate-300 pt-2">
+                        BS Computer Science Student & Cybersecurity Enthusiast
+                    </p>
+                </div>
+
+                <!-- Subtext -->
+                <p class="text-slate-400 text-base sm:text-lg max-w-2xl leading-relaxed">
+                    Passionate about understanding how systems operate under the hood. Focused on <strong class="text-cyan-300 font-medium">Cybersecurity</strong>, <strong class="text-blue-300 font-medium">Cloud Infrastructure Security</strong>, and building robust software applications.
+                </p>
+
+                <!-- Quick Tech Highlights -->
+                <div class="flex flex-wrap gap-2 pt-2 font-code text-xs text-slate-300">
+                    <span class="px-2.5 py-1 rounded bg-slate-800/80 border border-slate-700/60"><i class="fa-brands fa-linux text-cyan-400 me-1"></i> Kali Linux</span>
+                    <span class="px-2.5 py-1 rounded bg-slate-800/80 border border-slate-700/60"><i class="fa-solid fa-shield-halved text-cyan-400 me-1"></i> Network Recon</span>
+                    <span class="px-2.5 py-1 rounded bg-slate-800/80 border border-slate-700/60"><i class="fa-brands fa-python text-cyan-400 me-1"></i> Python / C++</span>
+                    <span class="px-2.5 py-1 rounded bg-slate-800/80 border border-slate-700/60"><i class="fa-solid fa-cloud text-cyan-400 me-1"></i> Cloud IAM</span>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="flex flex-wrap gap-4 pt-4">
+                    <a href="#projects" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 font-semibold font-code hover:shadow-lg hover:shadow-cyan-500/25 hover:scale-105 transition-all flex items-center gap-2">
+                        <i class="fa-solid fa-rocket"></i> Explore Projects
+                    </a>
+                    <a href="#contact" class="px-6 py-3.5 rounded-xl glass-panel border border-cyan-500/30 text-cyan-300 font-semibold font-code hover:bg-cyan-500/10 hover:border-cyan-400 transition-all flex items-center gap-2">
+                        <i class="fa-solid fa-paper-plane"></i> Get In Touch
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right Visual Interactive Terminal Column -->
+            <div class="lg:col-span-5 w-full">
+                <div class="glass-panel rounded-2xl overflow-hidden shadow-2xl border border-cyan-500/20 glow-cyan">
+                    <!-- Window Controls Bar -->
+                    <div class="terminal-header px-4 py-3 flex items-center justify-between">
+                        <div class="flex items-center space-x-2">
+                            <span class="w-3 h-3 rounded-full bg-red-500 inline-block"></span>
+                            <span class="w-3 h-3 rounded-full bg-yellow-500 inline-block"></span>
+                            <span class="w-3 h-3 rounded-full bg-green-500 inline-block"></span>
+                        </div>
+                        <div class="font-code text-xs text-slate-400 flex items-center gap-1">
+                            <i class="fa-solid fa-lock text-cyan-400"></i> security_shell.sh
+                        </div>
+                        <div class="text-xs font-code text-cyan-400">v2.5.0</div>
+                    </div>
+
+                    <!-- Terminal Content Area -->
+                    <div class="p-5 font-code text-xs sm:text-sm space-y-4 text-slate-300 bg-slate-950/90 min-h-[320px]">
+                        <div>
+                            <span class="text-emerald-400">user@raheem-security</span>:<span class="text-blue-400">~</span>$ whoami
+                            <div class="text-cyan-300 mt-1 pl-3 border-l-2 border-cyan-500/50">
+                                Abdul Raheem Toor [BSCS - 5th Semester]
+                            </div>
+                        </div>
+
+                        <div>
+                            <span class="text-emerald-400">user@raheem-security</span>:<span class="text-blue-400">~</span>$ cat core_competencies.json
+                            <pre class="text-slate-300 mt-1 text-xs overflow-x-auto bg-slate-900/60 p-2.5 rounded border border-slate-800">
+{
+  "focus": ["Cybersecurity", "Cloud Sec", "Software Dev"],
+  "gpa_current": "3.7 / 4.0",
+  "credit_hours": 64,
+  "tools": ["Nmap", "Wireshark", "Packet Tracer", "Flutter"]
+}</pre>
+                        </div>
+
+                        <div>
+                            <span class="text-emerald-400">user@raheem-security</span>:<span class="text-blue-400">~</span>$ ./init_scan.sh
+                            <div class="text-emerald-400 mt-1 flex items-center gap-2">
+                                <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                                Security modules initialized. Ready for analysis...
+                            </div>
+                        </div>
+
+                        <div class="pt-2 text-slate-500 text-xs flex items-center justify-between border-t border-slate-800">
+                            <span>LOCATION: PAKISTAN</span>
+                            <span class="animate-pulse text-cyan-400">_CURSOR ACTIVE</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ABOUT ME SECTION -->
+    <section id="about" class="py-24 relative z-10 border-t border-slate-800/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Section Header -->
+            <div class="flex flex-col items-center mb-16 text-center">
+                <span class="font-code text-cyan-400 text-sm tracking-widest uppercase mb-2">// System Profile</span>
+                <h2 class="text-3xl sm:text-5xl font-extrabold text-white">About <span class="text-gradient-cyber">Me</span></h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full mt-4"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                
+                <!-- Left Bio Text -->
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="glass-panel p-8 rounded-2xl border border-cyan-500/20 space-y-4">
+                        <h3 class="text-2xl font-bold text-white flex items-center gap-3">
+                            <i class="fa-solid fa-microchip text-cyan-400"></i>
+                            Low-Level Understanding & Systems Driven
+                        </h3>
+                        <p class="text-slate-300 leading-relaxed">
+                            I am a BS Computer Science student at <strong class="text-cyan-300">COMSATS University Islamabad, Wah Campus</strong>, currently navigating my 5th semester. My core academic and technical enthusiasm is centered around <span class="text-white font-semibold">Cybersecurity, Cloud Infrastructure Security, Software Development, and Artificial Intelligence</span>.
+                        </p>
+                        <p class="text-slate-300 leading-relaxed">
+                            Unlike simply applying out-of-the-box frameworks, I thrive on <strong class="text-cyan-300">understanding how systems work internally</strong>. From memory layout and packet inspection to access control mechanisms, my goal is to decipher foundational engineering principles.
+                        </p>
+                        <p class="text-slate-300 leading-relaxed">
+                            My ultimate goal is to pioneer robust, high-assurance security engineering solutions where safety is embedded directly into architectural cores rather than appended post-deployment.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Right Key Stats & Cards Grid -->
+                <div class="lg:col-span-5 grid grid-cols-2 gap-4">
+                    
+                    <div class="glass-panel p-6 rounded-2xl border border-cyan-500/20 text-center glass-panel-hover">
+                        <div class="font-code text-4xl sm:text-5xl font-extrabold text-gradient-cyber mb-1" id="stat-gpa">3.7</div>
+                        <div class="text-xs font-code text-cyan-400 uppercase tracking-wider">Current Term GPA</div>
+                        <p class="text-slate-400 text-xs mt-2">5th Semester Peak Academic Standing</p>
+                    </div>
+
+                    <div class="glass-panel p-6 rounded-2xl border border-cyan-500/20 text-center glass-panel-hover">
+                        <div class="font-code text-4xl sm:text-5xl font-extrabold text-gradient-purple mb-1" id="stat-cgpa">3.13</div>
+                        <div class="text-xs font-code text-blue-400 uppercase tracking-wider">Cumulative GPA</div>
+                        <p class="text-slate-400 text-xs mt-2">Overall COMSATS Academic Metric</p>
+                    </div>
+
+                    <div class="glass-panel p-6 rounded-2xl border border-cyan-500/20 text-center glass-panel-hover">
+                        <div class="font-code text-4xl sm:text-5xl font-extrabold text-emerald-400 mb-1" id="stat-ch">64</div>
+                        <div class="text-xs font-code text-emerald-400 uppercase tracking-wider">Completed Credit Hrs</div>
+                        <p class="text-slate-400 text-xs mt-2">Core CS & Security Foundation</p>
+                    </div>
+
+                    <div class="glass-panel p-6 rounded-2xl border border-cyan-500/20 text-center glass-panel-hover">
+                        <div class="font-code text-3xl sm:text-4xl font-extrabold text-cyan-300 mb-1">04+</div>
+                        <div class="text-xs font-code text-cyan-400 uppercase tracking-wider">Core Security Labs</div>
+                        <p class="text-slate-400 text-xs mt-2">IAM, Recon & Web App Projects</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- EDUCATION SECTION -->
+    <section id="education" class="py-24 relative z-10 bg-slate-950/40 border-t border-slate-800/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="flex flex-col items-center mb-16 text-center">
+                <span class="font-code text-cyan-400 text-sm tracking-widest uppercase mb-2">// Academic Background</span>
+                <h2 class="text-3xl sm:text-5xl font-extrabold text-white">Education & <span class="text-gradient-cyber">Coursework</span></h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full mt-4"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                
+                <!-- COMSATS Main Card -->
+                <div class="lg:col-span-5 glass-panel p-8 rounded-2xl border border-cyan-500/30 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-cyan-500/10 rounded-full blur-2xl pointer-events-none"></div>
+                    
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-slate-950 text-2xl font-bold shadow-lg shadow-cyan-500/20">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white">BS Computer Science</h3>
+                            <p class="text-cyan-400 font-code text-sm">COMSATS University Islamabad</p>
+                            <p class="text-slate-400 text-xs">Wah Campus, Pakistan</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4 pt-2 border-t border-slate-800 font-code text-sm">
+                        <div class="flex justify-between items-center">
+                            <span class="text-slate-400">Duration:</span>
+                            <span class="text-slate-200 font-semibold">2024 – Present</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-slate-400">Current Progress:</span>
+                            <span class="text-cyan-300 font-semibold">Semester 5</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-slate-400">Credit Hours:</span>
+                            <span class="text-emerald-400 font-semibold">64 / Completed</span>
+                        </div>
+                    </div>
+
+                    <!-- GPA Progress Indicators -->
+                    <div class="mt-6 space-y-3 pt-4 border-t border-slate-800">
+                        <div>
+                            <div class="flex justify-between text-xs font-code mb-1">
+                                <span class="text-slate-300">Current Semester GPA</span>
+                                <span class="text-cyan-400 font-bold">3.7 / 4.0</span>
+                            </div>
+                            <div class="w-full h-2.5 bg-slate-900 rounded-full overflow-hidden p-0.5 border border-slate-800">
+                                <div class="h-full bg-gradient-to-r from-cyan-500 to-emerald-400 rounded-full" style="width: 92.5%"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between text-xs font-code mb-1">
+                                <span class="text-slate-300">Cumulative GPA (CGPA)</span>
+                                <span class="text-blue-400 font-bold">3.13 / 4.0</span>
+                            </div>
+                            <div class="w-full h-2.5 bg-slate-900 rounded-full overflow-hidden p-0.5 border border-slate-800">
+                                <div class="h-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-full" style="width: 78.25%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Relevant Coursework Grid -->
+                <div class="lg:col-span-7 glass-panel p-8 rounded-2xl border border-cyan-500/20 space-y-6">
+                    <h3 class="text-2xl font-bold text-white flex items-center gap-3">
+                        <i class="fa-solid fa-book-bookmark text-cyan-400"></i>
+                        Relevant Academic Coursework
+                    </h3>
+                    <p class="text-slate-400 text-sm">
+                        Rigorous computer science curriculum building analytical, algorithmic, and engineering skills:
+                    </p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        
+                        <div class="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-cyan-500/40 transition-all flex items-center gap-3">
+                            <i class="fa-solid fa-diagram-project text-cyan-400"></i>
+                            <span class="text-sm font-medium text-slate-200">Data Structures & Algorithms</span>
+                        </div>
+
+                        <div class="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-cyan-500/40 transition-all flex items-center gap-3">
+                            <i class="fa-solid fa-cubes text-cyan-400"></i>
+                            <span class="text-sm font-medium text-slate-200">Object-Oriented Programming</span>
+                        </div>
+
+                        <div class="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-cyan-500/40 transition-all flex items-center gap-3">
+                            <i class="fa-solid fa-terminal text-cyan-400"></i>
+                            <span class="text-sm font-medium text-slate-200">Operating Systems</span>
+                        </div>
+
+                        <div class="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-cyan-500/40 transition-all flex items-center gap-3">
+                            <i class="fa-solid fa-database text-cyan-400"></i>
+                            <span class="text-sm font-medium text-slate-200">Database Systems</span>
+                        </div>
+
+                        <div class="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-cyan-500/40 transition-all flex items-center gap-3">
+                            <i class="fa-solid fa-network-wired text-cyan-400"></i>
+                            <span class="text-sm font-medium text-slate-200">Computer Networks</span>
+                        </div>
+
+                        <div class="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-cyan-500/40 transition-all flex items-center gap-3">
+                            <i class="fa-solid fa-brain text-cyan-400"></i>
+                            <span class="text-sm font-medium text-slate-200">Artificial Intelligence</span>
+                        </div>
+
+                        <div class="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-cyan-500/40 transition-all flex items-center gap-3">
+                            <i class="fa-solid fa-code text-cyan-400"></i>
+                            <span class="text-sm font-medium text-slate-200">Web Technologies</span>
+                        </div>
+
+                        <div class="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-cyan-500/40 transition-all flex items-center gap-3">
+                            <i class="fa-solid fa-mobile-screen-button text-cyan-400"></i>
+                            <span class="text-sm font-medium text-slate-200">Mobile App Development</span>
+                        </div>
+
+                        <div class="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-cyan-500/40 transition-all flex items-center gap-3">
+                            <i class="fa-solid fa-microchip text-cyan-400"></i>
+                            <span class="text-sm font-medium text-slate-200">Computer Org & Assembly</span>
+                        </div>
+
+                        <div class="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-cyan-500/40 transition-all flex items-center gap-3">
+                            <i class="fa-solid fa-calculator text-cyan-400"></i>
+                            <span class="text-sm font-medium text-slate-200">Calculus & Mathematics</span>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- TECHNICAL SKILLS SECTION -->
+    <section id="skills" class="py-24 relative z-10 border-t border-slate-800/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="flex flex-col items-center mb-12 text-center">
+                <span class="font-code text-cyan-400 text-sm tracking-widest uppercase mb-2">// Technical Matrix</span>
+                <h2 class="text-3xl sm:text-5xl font-extrabold text-white">Skills & <span class="text-gradient-cyber">Competencies</span></h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full mt-4"></div>
+            </div>
+
+            <!-- Category Filter Buttons -->
+            <div class="flex flex-wrap justify-center gap-2 sm:gap-3 mb-12 font-code text-xs sm:text-sm" id="skills-filter">
+                <button class="skill-btn active px-4 py-2 rounded-xl border border-cyan-500 bg-cyan-500/20 text-cyan-300 font-semibold transition-all" data-category="all">
+                    All Skills
+                </button>
+                <button class="skill-btn px-4 py-2 rounded-xl border border-slate-800 bg-slate-900/60 text-slate-400 hover:text-cyan-300 transition-all" data-category="cyber">
+                    Cybersecurity & Networks
+                </button>
+                <button class="skill-btn px-4 py-2 rounded-xl border border-slate-800 bg-slate-900/60 text-slate-400 hover:text-cyan-300 transition-all" data-category="lang">
+                    Programming Languages
+                </button>
+                <button class="skill-btn px-4 py-2 rounded-xl border border-slate-800 bg-slate-900/60 text-slate-400 hover:text-cyan-300 transition-all" data-category="web-mobile">
+                    Web & Mobile
+                </button>
+            </div>
+
+            <!-- Skills Display Grid -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4" id="skills-grid">
+                
+                <!-- Cybersecurity Skills -->
+                <div class="skill-card glass-panel p-5 rounded-2xl glass-panel-hover border border-cyan-500/20 flex flex-col items-center text-center group" data-cat="cyber">
+                    <div class="w-12 h-12 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-2xl mb-3 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-network-wired"></i>
+                    </div>
+                    <h4 class="font-bold text-white text-base">Nmap</h4>
+                    <p class="text-xs text-slate-400 mt-1 font-code">Network Reconnaissance</p>
+                </div>
+
+                <div class="skill-card glass-panel p-5 rounded-2xl glass-panel-hover border border-cyan-500/20 flex flex-col items-center text-center group" data-cat="cyber">
+                    <div class="w-12 h-12 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-2xl mb-3 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-wave-square"></i>
+                    </div>
+                    <h4 class="font-bold text-white text-base">Wireshark</h4>
+                    <p class="text-xs text-slate-400 mt-1 font-code">Traffic & Packet Analysis</p>
+                </div>
+
+                <div class="skill-card glass-panel p-5 rounded-2xl glass-panel-hover border border-cyan-500/20 flex flex-col items-center text-center group" data-cat="cyber">
+                    <div class="w-12 h-12 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-2xl mb-3 group-hover:scale-110 transition-transform">
+                        <i class="fa-brands fa-linux"></i>
+                    </div>
+                    <h4 class="font-bold text-white text-base">Kali Linux</h4>
+                    <p class="text-xs text-slate-400 mt-1 font-code">Security Testing Environment</p>
+                </div>
+
+                <div class="skill-card glass-panel p-5 rounded-2xl glass-panel-hover border border-cyan-500/20 flex flex-col items-center text-center group" data-cat="cyber">
+                    <div class="w-12 h-12 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-2xl mb-3 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-user-shield"></i>
+                    </div>
+                    <h4 class="font-bold text-white text-base">IAM & Access Control</h4>
+                    <p class="text-xs text-slate-400 mt-1 font-code">AuthN & AuthZ Security</p>
+                </div>
+
+                <div class="skill-card glass-panel p-5 rounded-2xl glass-panel-hover border border-cyan-500/20 flex flex-col items-center text-center group" data-cat="cyber">
+                    <div class="w-12 h-12 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-2xl mb-3 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-sliders"></i>
+                    </div>
+                    <h4 class="font-bold text-white text-base">Network ACLs</h4>
+                    <p class="text-xs text-slate-400 mt-1 font-code">VLANs & Segmentation</p>
+                </div>
+
+                <!-- Languages -->
+                <div class="skill-card glass-panel p-5 rounded-2xl glass-panel-hover border border-cyan-500/20 flex flex-col items-center text-center group" data-cat="lang">
+                    <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-2xl mb-3 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-code"></i>
+                    </div>
+                    <h4 class="font-bold text-white text-base">C++</h4>
+                    <p class="text-xs text-slate-400 mt-1 font-code">Low-level Systems & DSA</p>
+                </div>
+
+                <div class="skill-card glass-panel p-5 rounded-2xl glass-panel-hover border border-cyan-500/20 flex flex-col items-center text-center group" data-cat="lang">
+                    <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-2xl mb-3 group-hover:scale-110 transition-transform">
+                        <i class="fa-brands fa-python"></i>
+                    </div>
+                    <h4 class="font-bold text-white text-base">Python</h4>
+                    <p class="text-xs text-slate-400 mt-1 font-code">Scripting & Security Automation</p>
+                </div>
+
+                <div class="skill-card glass-panel p-5 rounded-2xl glass-panel-hover border border-cyan-500/20 flex flex-col items-center text-center group" data-cat="lang">
+                    <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-2xl mb-3 group-hover:scale-110 transition-transform">
+                        <i class="fa-brands fa-java"></i>
+                    </div>
+                    <h4 class="font-bold text-white text-base">Java</h4>
+                    <p class="text-xs text-slate-400 mt-1 font-code">Object-Oriented Design</p>
+                </div>
+
+                <div class="skill-card glass-panel p-5 rounded-2xl glass-panel-hover border border-cyan-500/20 flex flex-col items-center text-center group" data-cat="lang">
+                    <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-2xl mb-3 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <h4 class="font-bold text-white text-base">Dart</h4>
+                    <p class="text-xs text-slate-400 mt-1 font-code">Flutter Ecosystem</p>
+                </div>
+
+                <!-- Web & Mobile -->
+                <div class="skill-card glass-panel p-5 rounded-2xl glass-panel-hover border border-cyan-500/20 flex flex-col items-center text-center group" data-cat="web-mobile">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-2xl mb-3 group-hover:scale-110 transition-transform">
+                        <i class="fa-mobile-screen-button fa-solid"></i>
+                    </div>
+                    <h4 class="font-bold text-white text-base">Flutter</h4>
+                    <p class="text-xs text-slate-400 mt-1 font-code">Cross-platform Apps</p>
+                </div>
+
+                <div class="skill-card glass-panel p-5 rounded-2xl glass-panel-hover border border-cyan-500/20 flex flex-col items-center text-center group" data-cat="web-mobile">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-2xl mb-3 group-hover:scale-110 transition-transform">
+                        <i class="fa-brands fa-html5"></i>
+                    </div>
+                    <h4 class="font-bold text-white text-base">HTML5 & CSS3</h4>
+                    <p class="text-xs text-slate-400 mt-1 font-code">Responsive Frontend</p>
+                </div>
+
+                <div class="skill-card glass-panel p-5 rounded-2xl glass-panel-hover border border-cyan-500/20 flex flex-col items-center text-center group" data-cat="web-mobile">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-2xl mb-3 group-hover:scale-110 transition-transform">
+                        <i class="fa-brands fa-js"></i>
+                    </div>
+                    <h4 class="font-bold text-white text-base">JavaScript</h4>
+                    <p class="text-xs text-slate-400 mt-1 font-code">Interactive Web Applications</p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section id="projects" class="py-24 relative z-10 bg-slate-950/40 border-t border-slate-800/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="flex flex-col items-center mb-16 text-center">
+                <span class="font-code text-cyan-400 text-sm tracking-widest uppercase mb-2">// Lab & Development Portfolio</span>
+                <h2 class="text-3xl sm:text-5xl font-extrabold text-white">Featured <span class="text-gradient-cyber">Projects & Labs</span></h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full mt-4"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                <!-- Project 1: Flutter Timetable -->
+                <div class="glass-panel rounded-2xl p-6 border border-cyan-500/20 glass-panel-hover flex flex-col justify-between group">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-12 h-12 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center text-2xl">
+                                <i class="fa-solid fa-calendar-days"></i>
+                            </div>
+                            <span class="px-3 py-1 rounded-full font-code text-xs bg-cyan-500/10 border border-cyan-500/30 text-cyan-300">
+                                Flutter / Mobile
+                            </span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white group-hover:text-cyan-300 transition-colors">Flutter Timetable Application</h3>
+                        <p class="text-slate-400 text-sm mt-3 leading-relaxed">
+                            A mobile timetable management solution with a dark neon-blue UI theme designed specifically for university students.
+                        </p>
+                        
+                        <div class="mt-4 space-y-2">
+                            <div class="flex items-center gap-2 text-xs text-slate-300 font-code">
+                                <i class="fa-solid fa-check text-cyan-400"></i> Monday–Friday timetable matrix with 30-min slots
+                            </div>
+                            <div class="flex items-center gap-2 text-xs text-slate-300 font-code">
+                                <i class="fa-solid fa-check text-cyan-400"></i> Add/delete dynamic courses & room scheduling
+                            </div>
+                            <div class="flex items-center gap-2 text-xs text-slate-300 font-code">
+                                <i class="fa-solid fa-check text-cyan-400"></i> Automatic period merging for consecutive time slots
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-6 mt-6 border-t border-slate-800/80 flex items-center justify-between">
+                        <div class="flex gap-2">
+                            <span class="text-xs font-code px-2 py-1 rounded bg-slate-800 text-slate-300">Flutter</span>
+                            <span class="text-xs font-code px-2 py-1 rounded bg-slate-800 text-slate-300">Dart</span>
+                        </div>
+                        <button onclick="openModal('flutter-modal')" class="text-xs font-code text-cyan-400 hover:text-cyan-300 flex items-center gap-1">
+                            Details <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project 2: IAM Security Lab -->
+                <div class="glass-panel rounded-2xl p-6 border border-cyan-500/20 glass-panel-hover flex flex-col justify-between group">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-12 h-12 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center text-2xl">
+                                <i class="fa-solid fa-id-badge"></i>
+                            </div>
+                            <span class="px-3 py-1 rounded-full font-code text-xs bg-purple-500/10 border border-purple-500/30 text-purple-300">
+                                Security / IAM
+                            </span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white group-hover:text-cyan-300 transition-colors">IAM Security Lab</h3>
+                        <p class="text-slate-400 text-sm mt-3 leading-relaxed">
+                            Practical Identity and Access Management setup designed to simulate organizational role-based access controls.
+                        </p>
+                        
+                        <div class="mt-4 space-y-2">
+                            <div class="flex items-center gap-2 text-xs text-slate-300 font-code">
+                                <i class="fa-solid fa-check text-cyan-400"></i> Authentication vs. Authorization boundary mapping
+                            </div>
+                            <div class="flex items-center gap-2 text-xs text-slate-300 font-code">
+                                <i class="fa-solid fa-check text-cyan-400"></i> Developer & Manager permission levels logic
+                            </div>
+                            <div class="flex items-center gap-2 text-xs text-slate-300 font-code">
+                                <i class="fa-solid fa-check text-cyan-400"></i> Restricting unauthorized access to core resources
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-6 mt-6 border-t border-slate-800/80 flex items-center justify-between">
+                        <div class="flex gap-2">
+                            <span class="text-xs font-code px-2 py-1 rounded bg-slate-800 text-slate-300">Access Control</span>
+                            <span class="text-xs font-code px-2 py-1 rounded bg-slate-800 text-slate-300">RBAC</span>
+                        </div>
+                        <button onclick="openModal('iam-modal')" class="text-xs font-code text-cyan-400 hover:text-cyan-300 flex items-center gap-1">
+                            Details <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project 3: Network Security Lab -->
+                <div class="glass-panel rounded-2xl p-6 border border-cyan-500/20 glass-panel-hover flex flex-col justify-between group">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-12 h-12 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-2xl">
+                                <i class="fa-solid fa-shield-halved"></i>
+                            </div>
+                            <span class="px-3 py-1 rounded-full font-code text-xs bg-emerald-500/10 border border-emerald-500/30 text-emerald-300">
+                                Networking & Recon
+                            </span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white group-hover:text-cyan-300 transition-colors">Network Security & Recon Lab</h3>
+                        <p class="text-slate-400 text-sm mt-3 leading-relaxed">
+                            Hands-on virtualized laboratory environment for packet analysis, scanning, VLAN segmentation, and ACL enforcing.
+                        </p>
+                        
+                        <div class="mt-4 space-y-2">
+                            <div class="flex items-center gap-2 text-xs text-slate-300 font-code">
+                                <i class="fa-solid fa-check text-cyan-400"></i> Kali Linux, Metasploitable, Nmap & Wireshark
+                            </div>
+                            <div class="flex items-center gap-2 text-xs text-slate-300 font-code">
+                                <i class="fa-solid fa-check text-cyan-400"></i> VLANs & Router-on-a-stick topology
+                            </div>
+                            <div class="flex items-center gap-2 text-xs text-slate-300 font-code">
+                                <i class="fa-solid fa-check text-cyan-400"></i> Access Control Lists (ACLs) & traffic filtering
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-6 mt-6 border-t border-slate-800/80 flex items-center justify-between">
+                        <div class="flex gap-2">
+                            <span class="text-xs font-code px-2 py-1 rounded bg-slate-800 text-slate-300">Cisco Packet Tracer</span>
+                            <span class="text-xs font-code px-2 py-1 rounded bg-slate-800 text-slate-300">Wireshark</span>
+                        </div>
+                        <button onclick="openModal('network-modal')" class="text-xs font-code text-cyan-400 hover:text-cyan-300 flex items-center gap-1">
+                            Details <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project 4: Food Corner Web -->
+                <div class="glass-panel rounded-2xl p-6 border border-cyan-500/20 glass-panel-hover flex flex-col justify-between group">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-12 h-12 rounded-xl bg-pink-500/20 text-pink-400 flex items-center justify-center text-2xl">
+                                <i class="fa-solid fa-utensils"></i>
+                            </div>
+                            <span class="px-3 py-1 rounded-full font-code text-xs bg-pink-500/10 border border-pink-500/30 text-pink-300">
+                                Frontend Web
+                            </span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white group-hover:text-cyan-300 transition-colors">Food Corner Web App</h3>
+                        <p class="text-slate-400 text-sm mt-3 leading-relaxed">
+                            Front-end web development project created as part of Web Technologies coursework focusing on layout and responsiveness.
+                        </p>
+                        
+                        <div class="mt-4 space-y-2">
+                            <div class="flex items-center gap-2 text-xs text-slate-300 font-code">
+                                <i class="fa-solid fa-check text-cyan-400"></i> Structured web pages with HTML5 semantics
+                            </div>
+                            <div class="flex items-center gap-2 text-xs text-slate-300 font-code">
+                                <i class="fa-solid fa-check text-cyan-400"></i> Responsive layout with dynamic CSS styling
+                            </div>
+                            <div class="flex items-center gap-2 text-xs text-slate-300 font-code">
+                                <i class="fa-solid fa-check text-cyan-400"></i> JavaScript interactions for user flow
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-6 mt-6 border-t border-slate-800/80 flex items-center justify-between">
+                        <div class="flex gap-2">
+                            <span class="text-xs font-code px-2 py-1 rounded bg-slate-800 text-slate-300">HTML</span>
+                            <span class="text-xs font-code px-2 py-1 rounded bg-slate-800 text-slate-300">CSS</span>
+                            <span class="text-xs font-code px-2 py-1 rounded bg-slate-800 text-slate-300">JS</span>
+                        </div>
+                        <button onclick="openModal('food-modal')" class="text-xs font-code text-cyan-400 hover:text-cyan-300 flex items-center gap-1">
+                            Details <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- AREAS OF INTEREST & ROADMAP SECTION -->
+    <section id="interests" class="py-24 relative z-10 border-t border-slate-800/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="flex flex-col items-center mb-16 text-center">
+                <span class="font-code text-cyan-400 text-sm tracking-widest uppercase mb-2">// Vision & Specialization</span>
+                <h2 class="text-3xl sm:text-5xl font-extrabold text-white">Areas of <span class="text-gradient-cyber">Interest & Goals</span></h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full mt-4"></div>
+            </div>
+
+            <!-- 3 Core Focus Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+                
+                <div class="glass-panel p-6 rounded-2xl border border-cyan-500/20 glass-panel-hover space-y-4">
+                    <div class="w-12 h-12 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-2xl">
+                        <i class="fa-solid fa-user-shield"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white">Cybersecurity Focus</h3>
+                    <ul class="space-y-2 font-code text-xs text-slate-300">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-caret-right text-cyan-400"></i> Application Security (AppSec)</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-caret-right text-cyan-400"></i> Identity & Access Management</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-caret-right text-cyan-400"></i> DevSecOps Pipelines</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-caret-right text-cyan-400"></i> Vulnerability Assessment</li>
+                    </ul>
+                </div>
+
+                <div class="glass-panel p-6 rounded-2xl border border-cyan-500/20 glass-panel-hover space-y-4">
+                    <div class="w-12 h-12 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center text-2xl">
+                        <i class="fa-solid fa-cloud"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white">Cloud Security</h3>
+                    <p class="text-slate-400 text-xs leading-relaxed">
+                        Securing cloud infrastructure, identities, applications, and services across major enterprise cloud platforms.
+                    </p>
+                    <div class="pt-2 font-code text-xs text-blue-300">
+                        #CloudSec #IAM #InfrastructureAsCode
+                    </div>
+                </div>
+
+                <div class="glass-panel p-6 rounded-2xl border border-cyan-500/20 glass-panel-hover space-y-4">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-2xl">
+                        <i class="fa-solid fa-robot"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white">AI + Security Convergence</h3>
+                    <p class="text-slate-400 text-xs leading-relaxed">
+                        Exploring AI agents operating under strict security authorization mechanisms, human approvals, and accountability controls.
+                    </p>
+                    <div class="pt-2 font-code text-xs text-emerald-300">
+                        #AIAgents #AutonomousSecurity
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Short Term vs Long Term Goals Timeline -->
+            <div class="glass-panel p-8 rounded-2xl border border-cyan-500/20">
+                <h3 class="text-2xl font-bold text-white mb-8 text-center flex items-center justify-center gap-3">
+                    <i class="fa-solid fa-route text-cyan-400"></i> Career Growth Roadmap
+                </h3>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 relative">
+                    
+                    <!-- Short Term -->
+                    <div class="space-y-4 border-l-2 border-cyan-500/40 pl-6 relative">
+                        <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-cyan-500 border-4 border-slate-950"></div>
+                        <span class="font-code text-xs text-cyan-400 tracking-wider uppercase font-bold">Short Term Goals</span>
+                        <h4 class="text-lg font-bold text-white">Skill Hardening & Certification</h4>
+                        <ul class="space-y-2 text-slate-300 text-sm">
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-angle-right text-cyan-400 mt-1"></i> Deepen Data Structures & Algorithms proficiency in C++</li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-angle-right text-cyan-400 mt-1"></i> Develop practical cloud security labs (AWS / Azure)</li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-angle-right text-cyan-400 mt-1"></i> Earn security certifications and publish open-source security tools</li>
+                        </ul>
+                    </div>
+
+                    <!-- Long Term -->
+                    <div class="space-y-4 border-l-2 border-blue-500/40 pl-6 relative">
+                        <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-blue-500 border-4 border-slate-950"></div>
+                        <span class="font-code text-xs text-blue-400 tracking-wider uppercase font-bold">Long Term Vision</span>
+                        <h4 class="text-lg font-bold text-white">Cloud Security Engineer</h4>
+                        <ul class="space-y-2 text-slate-300 text-sm">
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-angle-right text-blue-400 mt-1"></i> Architect large-scale secure cloud infrastructure</li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-angle-right text-blue-400 mt-1"></i> Master DevSecOps and Application Security automation</li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-angle-right text-blue-400 mt-1"></i> Pursue specialized graduate studies in Cybersecurity</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="py-24 relative z-10 bg-slate-950/60 border-t border-slate-800/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="flex flex-col items-center mb-16 text-center">
+                <span class="font-code text-cyan-400 text-sm tracking-widest uppercase mb-2">// Establish Connection</span>
+                <h2 class="text-3xl sm:text-5xl font-extrabold text-white">Get In <span class="text-gradient-cyber">Touch</span></h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full mt-4"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+                
+                <!-- Contact Direct Info -->
+                <div class="lg:col-span-5 glass-panel p-8 rounded-2xl border border-cyan-500/20 space-y-6">
+                    <h3 class="text-2xl font-bold text-white">Let's Connect</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        Whether you want to discuss cloud security, collaborate on a project, or inquire about software development opportunities, feel free to drop a message.
+                    </p>
+
+                    <div class="space-y-4 pt-4 font-code text-sm">
+                        
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-lg bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-lg">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div>
+                                <span class="text-xs text-slate-400 block">Direct Email</span>
+                                <a href="mailto:raheemtoor1@gmail.com" class="text-slate-100 hover:text-cyan-300 font-semibold transition-colors">raheemtoor1@gmail.com</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-lg bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-lg">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div>
+                                <span class="text-xs text-slate-400 block">Location</span>
+                                <span class="text-slate-100 font-semibold">COMSATS Wah Campus, Pakistan</span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Social Links -->
+                    <div class="pt-6 border-t border-slate-800">
+                        <span class="text-xs font-code text-slate-400 block mb-3">SOCIAL HANDLES & PROFILES</span>
+                        <div class="flex gap-3">
+                            <a href="https://github.com" target="_blank" class="w-10 h-10 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 hover:text-cyan-400 hover:border-cyan-500/40 flex items-center justify-center transition-all">
+                                <i class="fa-brands fa-github text-lg"></i>
+                            </a>
+                            <a href="https://linkedin.com" target="_blank" class="w-10 h-10 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 hover:text-cyan-400 hover:border-cyan-500/40 flex items-center justify-center transition-all">
+                                <i class="fa-brands fa-linkedin-in text-lg"></i>
+                            </a>
+                            <a href="https://instagram.com/rraheem_rajpoot" target="_blank" class="w-10 h-10 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 hover:text-cyan-400 hover:border-cyan-500/40 flex items-center justify-center transition-all">
+                                <i class="fa-brands fa-instagram text-lg"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Contact Interactive Form -->
+                <div class="lg:col-span-7 glass-panel p-8 rounded-2xl border border-cyan-500/20">
+                    <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-5">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                            <div>
+                                <label class="block font-code text-xs text-slate-300 mb-2">YOUR NAME</label>
+                                <input type="text" required placeholder="John Doe" class="w-full bg-slate-900/80 border border-slate-800 rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:border-cyan-500 font-code text-sm transition-all">
+                            </div>
+                            <div>
+                                <label class="block font-code text-xs text-slate-300 mb-2">YOUR EMAIL</label>
+                                <input type="email" required placeholder="john@example.com" class="w-full bg-slate-900/80 border border-slate-800 rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:border-cyan-500 font-code text-sm transition-all">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block font-code text-xs text-slate-300 mb-2">SUBJECT</label>
+                            <input type="text" required placeholder="Security Collaboration / Project Inquiry" class="w-full bg-slate-900/80 border border-slate-800 rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:border-cyan-500 font-code text-sm transition-all">
+                        </div>
+
+                        <div>
+                            <label class="block font-code text-xs text-slate-300 mb-2">MESSAGE</label>
+                            <textarea rows="4" required placeholder="Write your message here..." class="w-full bg-slate-900/80 border border-slate-800 rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:border-cyan-500 font-code text-sm transition-all"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 font-bold font-code hover:shadow-lg hover:shadow-cyan-500/25 transition-all flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-paper-plane"></i> Transmit Message
+                        </button>
+                    </form>
+                    
+                    <div id="form-feedback" class="hidden mt-4 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 font-code text-xs text-center">
+                        <i class="fa-solid fa-circle-check me-2"></i> Message encrypted and transmitted successfully!
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-8 border-t border-slate-800 text-center font-code text-xs text-slate-500 relative z-10">
+        <div class="max-w-7xl mx-auto px-4">
+            <p>&copy; <span id="year"></span> Abdul Raheem Toor. Engineered with Security & CS Fundamentals.</p>
+        </div>
+    </footer>
+
+    <!-- PROJECT MODALS CONTAINER -->
+    <div id="modal-container" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md hidden transition-opacity">
+        <div class="glass-panel max-w-2xl w-full rounded-2xl p-6 border border-cyan-500/40 shadow-2xl relative space-y-4 max-h-[90vh] overflow-y-auto">
+            
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-cyan-400 text-xl font-code">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div id="modal-content">
+                <!-- Content dynamically injected -->
+            </div>
+
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT CORE -->
+    <script>
+        // Set dynamic current year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Mobile Menu Toggle Logic
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Skills Filter Logic
+        const skillBtns = document.querySelectorAll('.skill-btn');
+        const skillCards = document.querySelectorAll('.skill-card');
+
+        skillBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                skillBtns.forEach(b => {
+                    b.classList.remove('active', 'border-cyan-500', 'bg-cyan-500/20', 'text-cyan-300');
+                    b.classList.add('border-slate-800', 'bg-slate-900/60', 'text-slate-400');
+                });
+
+                btn.classList.add('active', 'border-cyan-500', 'bg-cyan-500/20', 'text-cyan-300');
+                btn.classList.remove('border-slate-800', 'bg-slate-900/60', 'text-slate-400');
+
+                const category = btn.getAttribute('data-category');
+
+                skillCards.forEach(card => {
+                    if (category === 'all' || card.getAttribute('data-cat') === category) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Project Modal Definitions
+        const projectData = {
+            'flutter-modal': {
+                title: "Flutter Timetable Application",
+                tag: "Flutter & Dart",
+                description: "A mobile application created to help university students manage their course schedules seamlessly.",
+                details: [
+                    "Full Monday-Friday timetable matrix with customizable 30-minute time slots.",
+                    "Dynamic course addition and room scheduling capabilities with instant state update.",
+                    "Algorithm to merge consecutive lecture slots visually.",
+                    "Mobile-first responsive interface featuring a modern dark/neon-blue visual aesthetic."
+                ]
+            },
+            'iam-modal': {
+                title: "IAM Security Lab Environment",
+                tag: "Identity & Access Control",
+                description: "A practical Identity and Access Management setup designed to explore authorization models in real enterprise architectures.",
+                details: [
+                    "User and Role Mapping: Defining Developer and Manager privilege hierarchies.",
+                    "Public vs Secret Resource Protection.",
+                    "Strict Authentication and Authorization flow controls.",
+                    "Understanding least privilege access models to minimize system attack vectors."
+                ]
+            },
+            'network-modal': {
+                title: "Network Security & Recon Lab",
+                tag: "Networking & Security",
+                description: "Virtual lab simulating network topologies, security enforcement, and traffic analysis.",
+                details: [
+                    "Active network recon using Nmap scans and Wireshark packet captures.",
+                    "Virtual Local Area Networks (VLANs) & Router-On-A-Stick router configuration.",
+                    "Deployment of Access Control Lists (ACLs) to filter unauthorized cross-subnet traffic.",
+                    "Segmentation testing using Metasploitable and Kali Linux virtual machines."
+                ]
+            },
+            'food-modal': {
+                title: "Food Corner Web Project",
+                tag: "Frontend Development",
+                description: "Front-end project created for Web Technologies coursework showcasing structured interfaces.",
+                details: [
+                    "Semantic HTML5 page structuring and component organization.",
+                    "Custom CSS styling with responsive design elements.",
+                    "Interactive JavaScript features for dynamic ordering workflow UI."
+                ]
+            }
+        };
+
+        function openModal(key) {
+            const data = projectData[key];
+            if (!data) return;
+
+            const modalContent = document.getElementById('modal-content');
+            modalContent.innerHTML = `
+                <div class="inline-block px-3 py-1 rounded-full text-xs font-code bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 mb-2">
+                    ${data.tag}
+                </div>
+                <h3 class="text-2xl font-bold text-white mb-2">${data.title}</h3>
+                <p class="text-slate-300 text-sm mb-4 leading-relaxed">${data.description}</p>
+                <div class="space-y-2 pt-2 border-t border-slate-800">
+                    <span class="text-xs font-code text-cyan-400 font-semibold block mb-2">// KEY ARCHITECTURAL HIGHLIGHTS</span>
+                    ${data.details.map(d => `<div class="text-xs text-slate-300 font-code flex items-start gap-2"><i class="fa-solid fa-angle-right text-cyan-400 mt-0.5"></i> <span>${d}</span></div>`).join('')}
+                </div>
+            `;
+
+            const container = document.getElementById('modal-container');
+            container.classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('modal-container').classList.add('hidden');
+        }
+
+        // Contact Form Submission Handler
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const feedback = document.getElementById('form-feedback');
+            feedback.classList.remove('hidden');
+            document.getElementById('contact-form').reset();
+            setTimeout(() => {
+                feedback.classList.add('hidden');
+            }, 5000);
+        }
+
+        // Background Cyber Particle Canvas
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 1;
+                this.speedX = (Math.random() - 0.5) * 0.8;
+                this.speedY = (Math.random() - 0.5) * 0.8;
+                this.color = Math.random() > 0.5 ? '#00f2fe' : '#4facfe';
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+            }
+
+            draw() {
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            const particleCount = Math.floor(window.innerWidth / 20);
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animateCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+
+                    if (dist < 110) {
+                        ctx.strokeStyle = `rgba(0, 242, 254, ${1 - dist / 110})`;
+                        ctx.lineWidth = 0.4;
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(animateCanvas);
+        }
+
+        window.onload = function() {
+            initParticles();
+            animateCanvas();
+        };
+    </script>
+</body>
+</html>
